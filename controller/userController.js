@@ -1,17 +1,19 @@
 const mongoose  = require('mongoose')
 const CREW = mongoose.model("managment_system")
 
+const now = Date()
+console.log(now.toLocaleString())
 
 const postData = (req,res) =>{
-    const {name , lastname , email , phone , location} = req.body;
-    if(!name || !email || !phone || !lastname || !location){
+    const {Title , Details } = req.body;
+    if(!Title || !Details){
       return  res.status(404).json({
             success:false,
             msg:"please fill all the fields"
         })
     }
     else{
-        CREW.findOne({email}).then(data=>{
+        CREW.findOne({Title}).then(data=>{
             if(data){
                 return res.status(401).json({
                     success:false,
@@ -20,7 +22,7 @@ const postData = (req,res) =>{
             }
             else{
                 const dataSaver = new CREW({
-                    name, lastname, email, location , phone
+                    Title,Details,Date:now.toLocaleString(),Length:CREW.length
                 })
                 dataSaver.save().then(mydata=>{
                     return res.status(200).json({
@@ -36,7 +38,7 @@ const postData = (req,res) =>{
 }
 
 const getData = (req,res) =>{
-    CREW.find().sort({name:1}).then(getData=>{
+    CREW.find().sort({Title:1}).then(getData=>{
         return res.status(201).json({
             success:true,
             data:getData
@@ -44,11 +46,21 @@ const getData = (req,res) =>{
     })
 }
 
-const updateData = (req,res) =>{
-    CREW.findByIdAndUpdate(req.params._id,req.body).then(data=>{
+const updateData = async(req,res) =>{
+    const Id = req.params._id
+
+    const tp = now.toLocaleString()
+
+    const data = await CREW.findByIdAndUpdate(Id,{
+        Title:req.body?.Title,
+        Details:req.body?.Details,
+        Date:tp,
+        
+
+    })
         if(!data) return res.status(301).json({success:true,msg:"Something Wrong"})
         res.status(201).json({success:true,data});
-    })
+    
 }
 
 const deleteData = (req,res) =>{

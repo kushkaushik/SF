@@ -7,13 +7,9 @@ import {  useNavigate } from 'react-router-dom';
 
 
 const Edit = () => {
-    const [name ,setName] = useState("");
-  const [lastname ,setLast] = useState("");
-  const [email ,setEmail] = useState("");
-  const [phone ,setPhone] = useState("");
-  const [location ,setLocation] = useState("");
-
-
+    const [Title ,setName] = useState("");
+  const [Details ,setLast] = useState("");
+ 
     const history  = useNavigate();
 
     const myself = ()=>{
@@ -24,7 +20,7 @@ const Edit = () => {
         
         },
         body:JSON.stringify({
-            name , lastname, email , phone, location
+            Title , Details 
         })
       }).then(res=>res.json()).then(data=>{
         if(data.error)
@@ -42,15 +38,12 @@ const Edit = () => {
         <div  id="mycard" className='container card'>
     
         <div className="row">
-              <h4 id="myid">Edit-Crew</h4>
+              <h4 id="myid">Edit-News</h4>
           <div id="inputji" className="input-field col s6">
          
-   <textarea value={name} onChange = {(e)=>setName(e.target.value)} placeholder="Name" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
-      <textarea value={lastname} onChange = {(e)=>setLast(e.target.value)} placeholder="Lastname" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
-      <textarea value={email} onChange = {(e)=>setEmail(e.target.value)} placeholder="Email" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
-      <textarea value={phone} onChange = {(e)=>setPhone(e.target.value)} placeholder="Phone:" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
-      <textarea value={location} onChange = {(e)=>setLocation(e.target.value)} placeholder="Location" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
-
+   <textarea value={Title} onChange = {(e)=>setName(e.target.value)} placeholder="Title" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
+      <textarea value={Details} onChange = {(e)=>setLast(e.target.value)} placeholder="Details" id="textarea2" class="materialize-textarea" data-length="1200"></textarea>
+    
           <button  onClick={()=>myself()}  id = "buttonji" class="waves-effect waves-light btn">Submit</button><br/><br/>
         
           </div>

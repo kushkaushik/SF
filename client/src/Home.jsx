@@ -48,15 +48,14 @@ const Home = () => {
   return (
 
     <div className='container my-4'>
-        <h4 style = {{marginLeft:"34%",padding:"0 3%"}}>Managment-Crew-List</h4>
+        <h4 style = {{marginLeft:"34%",padding:"0 3%"}}>Latest-News-Update</h4>
 <table className='centered card'>
         <thead>
           <tr>
-              <th>Name</th>
-              <th>Lastname</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Location</th>
+              <th>Title</th>
+              <th>Details</th>
+              <th>Time</th>
+              
           </tr>
         </thead>
 {userdata.map((e)=>{
@@ -65,11 +64,10 @@ const Home = () => {
     
     <tbody>
           <tr>
-            <td>{e.name}</td>
-            <td>{e.lastname}</td>
-            <td>{e.email}</td>
-            <td>{e.phone}</td>
-            <td>{e.location}</td>
+            <td>{e.Title}</td>
+            <td>{e.Details}</td>
+            <td>{e.Date}</td>
+           
                <td>
             <button  onClick={()=>mydelete(e._id)} style={{marginRight:"7px"}} className="waves-effect waves-light btn">Delete</button>
             <button onClick={()=>{
@@ -93,7 +91,8 @@ const Home = () => {
 
       </table>
             
-      <Link style={{marginLeft:"44%"}} to = "/Todo"><button  style={{marginRight:"7px"}}  className="waves-effect waves-light btn">Add-Todo</button></Link>
+      <Link style={{marginLeft:"44%"}} to = "/Todo"><button  style={{marginRight:"7px"}}  className="waves-effect waves-light btn">Create-News-Update</button></Link>
+      <p>No of News {userdata.length}</p>
     </div>
   )
 }

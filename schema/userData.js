@@ -1,25 +1,18 @@
 const mongoose = require('mongoose')
 const newSchema = mongoose.Schema({
-    name:{
+    Title:{
         type:String,
         required:true
     },
-    lastname:{
+    Details:{
         type:String,
         required:true
     },
-    email:{
+    Date:{
         type:String,
-        required:true
-    },
-    phone:{
-        type:Number,
-        required:true
-    },
-    location:{
-        type:String,
-        required:true
+        default:"ALT"
     }
-})
+   
+},{timestamps:true})
 
 mongoose.model("managment_system",newSchema)
